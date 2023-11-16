@@ -10,12 +10,12 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -39,7 +39,7 @@ public class EnchantmentRecipe implements EmiRecipe {
                 new ArrayList<>(),
                 new ArrayList<>());
         int counter = 0;
-        for (Item item : Registries.ITEM){
+        for (Item item : Registry.ITEM){
             if (enchantment.isAcceptableItem(new ItemStack(item))){
                 validItems.get(counter % 8).add(EmiStack.of(item));
                 counter++;
@@ -164,7 +164,7 @@ public class EnchantmentRecipe implements EmiRecipe {
 
     @Override
     public @Nullable Identifier getId() {
-        Identifier id = Registries.ENCHANTMENT.getId(enchantment);
+        Identifier id = Registry.ENCHANTMENT.getId(enchantment);
         if (id == null) return null;
         return new Identifier(EmiEnchanting.MOD_ID,"/" + id.toTranslationKey() + "/enchanting_info" );
     }

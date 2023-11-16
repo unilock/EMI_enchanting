@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.api.widget.Widget;
 import dev.emi.emi.api.widget.WidgetHolder;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.tooltip.TooltipComponent;
+import net.minecraft.client.util.math.MatrixStack;
 
 import java.util.List;
 
@@ -31,10 +31,10 @@ public class PageWidget extends Widget implements WidgetHolder {
     }
 
     @Override
-    public void render(DrawContext draw, int mouseX, int mouseY, float delta) {
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         if (!isActive) return;
         for (Widget widget : widgets){
-            widget.render(draw, mouseX, mouseY, delta);
+            widget.render(matrices, mouseX, mouseY, delta);
         }
     }
 
